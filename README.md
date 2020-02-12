@@ -15,7 +15,7 @@ digite ```deactivate``` para desativar o ambiente da sua sessão
 
 ### 3 - Instale suas dependencias
 ```bash
-pip install -r requirements
+pip install -r requirements.txt
 ```
 
 ### 4 - Crie as tabelas: Gere as migrações e depois aplique no banco
