@@ -1,0 +1,4 @@
+.vscode/
+.idea
+download/migrations/*
+db.sqlite3
