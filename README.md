@@ -9,7 +9,7 @@ python3 -m venv meuambiente
 
 ### 2 - Ative seu ambiente virtual
 ```bash
-source env/bin/activate
+source meuambiente/bin/activate
 ```
 digite ```deactivate``` para desativar o ambiente da sua sessão
 
