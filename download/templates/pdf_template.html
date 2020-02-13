@@ -1,0 +1,43 @@
+
+<html>
+
+<head>
+    <title>Exportação</title>
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Job</th>
+            <th>Age</th>
+        </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.job }}</td>
+                <td>{{ user.age }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+</body>
+
+</html>
