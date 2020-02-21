@@ -26,6 +26,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 
 import os, time, datetime
+from django.forms.models import model_to_dict
 
 
 FAKER_LANG = 'pt_BR'
@@ -64,7 +65,7 @@ class Download(generics.ListAPIView):
             return self.xls(request)
 
         if request.accepted_renderer.format == 'pdf':
-            return self.pdf(request)
+            return self.pdf_teste(request)
 
         return super().list(self, request)
 
@@ -92,21 +93,16 @@ class Download(generics.ListAPIView):
             ('age', 'Age'),
         )
 
-        data = [
-            {
-                'name': 'asdasd',
-                'job': 'asd',
-                'age': '1'
-            }
-        ]
+        doc = DataToPdf(fields, queryset, title='Título')
+        doc.export('/tmp/users.pdf')
 
-        doc = DataToPdf(fields, data, title='Título')
-        doc.export('LogFiles.pdf')
-        print('asdasd')
+        fs = FileSystemStorage("/tmp")
+        with fs.open("users.pdf") as pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename="users.pdf"'
+            return response
 
-        return HttpResponse(
-            json.dumps({'response':'ok'}),
-            content_type="application/json")
+        return response
 
     def pdf_teste(self, request):
         queryset = self.filter_queryset(self.get_queryset())
